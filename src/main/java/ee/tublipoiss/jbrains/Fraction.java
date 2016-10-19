@@ -15,30 +15,38 @@ public class Fraction {
     }
 
     public Fraction add(Fraction summand) {
-        if (this.denominator == summand.denominator) {
-            final Fraction result = new Fraction(this.numerator + summand.numerator, this.denominator);
-            if (result.numerator == result.denominator) {
-                return new Fraction(1);
-            }
+        if (hasSameDenominator(summand)) {
+            Fraction result = new Fraction(this.numerator + summand.numerator, this.denominator);
+
+            result = toLowestTerm(result);
             return result;
         } else {
-            final Fraction x = new Fraction(this.numerator * summand.denominator,
-                                            this.denominator * summand.denominator);
-            final Fraction y = new Fraction(summand.numerator * this.denominator,
-                                            summand.denominator * this.denominator);
+            final Fraction x = toSameDenominatorAs(summand);
+            final Fraction y = summand.toSameDenominatorAs(this);
 
-            Fraction z = x.add(y);
-
-            int i = 2;
-            while (i <= z.denominator) {
-                if (z.numerator % i == 0 && z.denominator % i == 0) {
-                    z = new Fraction(z.numerator / i, z.denominator / i);
-                } else {
-                    i++;
-                }
-            }
-            return z;
+            return x.add(y);
         }
+    }
+
+    private Fraction toLowestTerm(Fraction result) {
+        int i = 2;
+        while (i <= result.denominator) {
+            if (result.numerator % i == 0 && result.denominator % i == 0) {
+                result = new Fraction(result.numerator / i, result.denominator / i);
+            } else {
+                i++;
+            }
+        }
+        return result;
+    }
+
+    private boolean hasSameDenominator(Fraction summand) {
+        return this.denominator == summand.denominator;
+    }
+
+    private Fraction toSameDenominatorAs(Fraction summand) {
+        return new Fraction(this.numerator * summand.denominator,
+                            this.denominator * summand.denominator);
     }
 
     @Override
