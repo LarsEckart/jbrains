@@ -48,4 +48,26 @@ public class FractionTest {
 
         assertEquals(new Fraction(1, 1), sum);
     }
+
+    @Test
+    public void should_add_3_1_and_2_1_to_5_1() {
+
+        final Fraction first = new Fraction(3, 1);
+        final Fraction second = new Fraction(2, 1);
+
+        final Fraction sum = first.add(second);
+
+        assertEquals(new Fraction(5, 1), sum);
+    }
+
+    @Test
+    public void should_add_1_2_and_6_4_to_2() {
+
+        final Fraction first = new Fraction(1, 2);
+        final Fraction second = new Fraction(6, 4);
+
+        final Fraction sum = first.add(second);
+
+        assertEquals(new Fraction(2), sum);
+    }
 }

@@ -15,11 +15,30 @@ public class Fraction {
     }
 
     public Fraction add(Fraction summand) {
-        final Fraction result = new Fraction(this.numerator + summand.numerator, this.denominator);
-        if (result.numerator == result.denominator) {
-            return new Fraction(1);
+        if (this.denominator == summand.denominator) {
+            final Fraction result = new Fraction(this.numerator + summand.numerator, this.denominator);
+            if (result.numerator == result.denominator) {
+                return new Fraction(1);
+            }
+            return result;
+        } else {
+            final Fraction x = new Fraction(this.numerator * summand.denominator,
+                                            this.denominator * summand.denominator);
+            final Fraction y = new Fraction(summand.numerator * this.denominator,
+                                            summand.denominator * this.denominator);
+
+            Fraction z = x.add(y);
+
+            int i = 2;
+            while (i <= z.denominator) {
+                if (z.numerator % i == 0 && z.denominator % i == 0) {
+                    z = new Fraction(z.numerator / i, z.denominator / i);
+                } else {
+                    i++;
+                }
+            }
+            return z;
         }
-        return result;
     }
 
     @Override
