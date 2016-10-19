@@ -16,6 +16,9 @@ public class Fraction {
 
     public Fraction add(Fraction summand) {
         final Fraction result = new Fraction(this.numerator + summand.numerator, this.denominator);
+        if (result.numerator == result.denominator) {
+            return new Fraction(1);
+        }
         return result;
     }
 
