@@ -52,8 +52,11 @@ public class Fraction {
     @Override
     public boolean equals(Object other) {
         if (other instanceof Fraction) {
-            Fraction that = (Fraction) other;
-            return this.numerator == that.numerator && this.denominator == that.denominator;
+            final Fraction that = (Fraction) other;
+            final Fraction thisWithLowestTerm = toLowestTerm(this);
+            final Fraction thatWithLowestTerm = toLowestTerm(that);
+            return thisWithLowestTerm.numerator == thatWithLowestTerm.numerator
+                       && thisWithLowestTerm.denominator == thatWithLowestTerm.denominator;
         } else {
             return false;
         }
