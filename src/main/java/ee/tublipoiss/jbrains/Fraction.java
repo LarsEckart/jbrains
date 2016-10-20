@@ -14,15 +14,15 @@ public class Fraction {
         this.denominator = denominator;
     }
 
-    public Fraction add(Fraction summand) {
-        if (hasSameDenominator(summand)) {
-            Fraction result = new Fraction(this.numerator + summand.numerator, this.denominator);
+    public Fraction add(Fraction that) {
+        if (this.hasSameDenominatorAs(that)) {
+            Fraction result = new Fraction(this.numerator + that.numerator, this.denominator);
 
             result = toLowestTerm(result);
             return result;
         } else {
-            final Fraction x = toSameDenominatorAs(summand);
-            final Fraction y = summand.toSameDenominatorAs(this);
+            final Fraction x = toSameDenominatorAs(that);
+            final Fraction y = that.toSameDenominatorAs(this);
 
             return x.add(y);
         }
@@ -40,7 +40,7 @@ public class Fraction {
         return result;
     }
 
-    private boolean hasSameDenominator(Fraction summand) {
+    private boolean hasSameDenominatorAs(Fraction summand) {
         return this.denominator == summand.denominator;
     }
 
@@ -50,21 +50,17 @@ public class Fraction {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object other) {
+        if (this == other) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (other == null || getClass() != other.getClass()) {
             return false;
         }
 
-        Fraction fraction = (Fraction) o;
+        final Fraction that = (Fraction) other;
 
-        if (numerator != fraction.numerator) {
-            return false;
-        }
-        return denominator == fraction.denominator;
-
+        return (this.numerator == that.numerator) && (denominator == that.denominator);
     }
 
     @Override
