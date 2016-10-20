@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class FractionTest {
+public class FractionAddTest {
 
     @Test
     public void should_add_7_3_and_4_5_to_47_15() {
