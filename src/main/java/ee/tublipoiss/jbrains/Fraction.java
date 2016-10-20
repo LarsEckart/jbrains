@@ -51,16 +51,12 @@ public class Fraction {
 
     @Override
     public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (other == null || getClass() != other.getClass()) {
+        if (other instanceof Fraction) {
+            Fraction that = (Fraction) other;
+            return this.numerator == that.numerator && this.denominator == that.denominator;
+        } else {
             return false;
         }
-
-        final Fraction that = (Fraction) other;
-
-        return (this.numerator == that.numerator) && (denominator == that.denominator);
     }
 
     @Override

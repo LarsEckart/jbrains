@@ -24,5 +24,19 @@
 
 package ee.tublipoiss.jbrains;
 
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
 public class FractionEqualsTest {
+
+    @Test
+    public void sameNumeratorAndNominator() throws Exception {
+        // given
+
+        // when
+
+        // then
+        assertEquals(new Fraction(3, 5), new Fraction(3, 5));
+    }
 }
