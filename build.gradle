@@ -6,6 +6,9 @@ buildscript {
         classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.1.10'
     }
 }
+plugins {
+    id "net.saliman.cobertura" version "2.3.2"
+}
 apply plugin: 'info.solidsoft.pitest'
 apply plugin: "jacoco"
 apply plugin: 'java'
@@ -15,8 +18,8 @@ repositories {
 }
 
 dependencies {
-
     testCompile 'junit:junit:4.12'
+    testRuntime 'org.slf4j:slf4j-api:1.7.10'
 }
 
 task 'create-dirs' << {
@@ -38,7 +41,6 @@ pitest {
 
 jacoco {
     toolVersion = "0.7.7.201606060606"
-
 }
 
 jacocoTestReport {
